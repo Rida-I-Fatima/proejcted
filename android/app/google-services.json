@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "414785142337",
+    "project_id": "handwriting-fbcd3",
+    "storage_bucket": "handwriting-fbcd3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414785142337:android:015c052b063c7dbb2090c0",
+        "android_client_info": {
+          "package_name": "com.example.flutterproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414785142337-uu9e7shv9bc0hv2rp04nhbmfih00bg4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVTqpJBZFf4-oMZ5pM4cQDFTtdvnN_4dM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414785142337-uu9e7shv9bc0hv2rp04nhbmfih00bg4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

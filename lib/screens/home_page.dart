@@ -188,17 +188,19 @@ Widget demoTopRated(String img, String name) {
     var size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () async {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-                await provider.googleLogin();
-                var user = FirebaseAuth.instance.currentUser;
-                if (user!=null) {
-                  Navigator.pop(context);
-                  Navigator.push(context, MaterialPageRoute(builder:(context) => HomePage()));
-                } else {
-                  // No user is signed in.
-                }
-              },
+                // final provider =
+                //     Provider.of<GoogleSignInProvider>(context, listen: false);
+                // await provider.googleLogin();
+                // var user = FirebaseAuth.instance.currentUser;
+                // if (user!=null) {
+                //   Navigator.pop(context);
+                //   Navigator.push(context, MaterialPageRoute(builder:(context) => HomePage()));
+                // } else r{
+                //   // No user is signed in.
+                // }
+        Navigator.push(context, MaterialPageRoute(builder:(context) => HomePage()));
+
+      },
       child: Container(
                 
         height: 65,
@@ -322,17 +324,19 @@ Widget demoTopRating(String img, String name) {
     var size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () async {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-                await provider.googleLogin();
-                var user = FirebaseAuth.instance.currentUser;
-                if (user!=null) {
-                  Navigator.pop(context);
-                  Navigator.push(context, MaterialPageRoute(builder:(context) => history()));
-                } else {
-                  // No user is signed in.
-                }
-              },
+                // final provider =
+                //     Provider.of<GoogleSignInProvider>(context, listen: false);
+                // await provider.googleLogin();
+                // var user = FirebaseAuth.instance.currentUser;
+                // if (user!=null) {
+                //   Navigator.pop(context);
+                //   Navigator.push(context, MaterialPageRoute(builder:(context) => history()));
+                // } else {
+                //   // No user is signed in.
+                // }
+        Navigator.push(context, MaterialPageRoute(builder:(context) => history()));
+
+      },
       child: Container(
                 
         height: 65,

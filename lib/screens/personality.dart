@@ -8,6 +8,8 @@ import 'dart:ffi';
 import 'package:flutterproject/screens/personality_out.dart';
 import 'package:image_cropper/image_cropper.dart';
 
+import '../firebase.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -54,6 +56,8 @@ classifyImage(image) async {
       //Declare List _outputs in the class which will be used to show the classified classs name and confidence
       _outputs = output;
     });
+    print("OUTPUT -- > "+ _outputs![0]["label"]);
+    FirebaseDB.addOutPutFirebase(output: _outputs![0]["label"]);
   }
   Future pickImage() async {
     var image = await _picker.getImage(source: ImageSource.gallery);

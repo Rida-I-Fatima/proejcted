@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterproject/screens/home_page.dart';
 
@@ -71,23 +73,53 @@ class _history extends State<history> {
         
         
       backgroundColor: const Color(0xFF2E454B),
-      body: Stack(
-        children: <Widget>[
-         Container(
-              margin: EdgeInsets.only(left: 125, right: 23, top: 18, bottom: 4,),
-              child: Column(
-              children: <Widget>[
-              Text('Patient History', textScaleFactor: 1.6, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white,)),                         
-                          
-                        ],
-                        
-              ),
-              
-              
-            ),
-        ],
+      body: Container(
+        margin: EdgeInsets.only(left: 125, right: 23, top: 18, bottom: 4,),
+        child: Column(
+          children: <Widget>[
+            Text('Patient History', textScaleFactor: 1.6, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white,)),
+            Expanded(child: HistoryWidget()),
+          ],
+
+        ),
+
+
       ),
       
+    );
+  }
+
+  Widget HistoryWidget(){
+
+    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('output').orderBy('time',descending: true).snapshots();
+    //final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('output').where("user",isEqualTo: FirebaseAuth.instance.currentUser!.uid).orderBy('time',descending: true).snapshots();
+
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: _usersStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+
+        return ListView(
+         // shrinkWrap: true,
+          children: snapshot.data!.docs.map((DocumentSnapshot document) {
+            Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+            return ListTile(
+              title: Text(data['output'],style:TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold
+              ),),
+              leading: Text(data['time'].toString().substring(0,16)),
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }
